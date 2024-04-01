@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>Currency</mat-label>
+  <mat-select>
+    @for (currency of currencySymbols; track currency) {
+      <mat-option [value]="currency.code">{{currency.name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
