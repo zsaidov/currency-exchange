@@ -1,8 +1,41 @@
-<mat-form-field>
-  <mat-label>Currency</mat-label>
-  <mat-select>
-    @for (currency of currencySymbols; track currency) {
-      <mat-option [value]="currency.code">{{currency.name}}</mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" class="convertor-main">
+      <div class="convertor-left">
+        <mat-form-field class="example-full-width">
+          <mat-label>Сумма</mat-label>
+          <input matInput formControlName="fromAmount" placeholder="1000" type="number" min="0">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Валюта</mat-label>
+          <mat-select formControlName="fromAmountCurrency">
+            @for (currency of currencySymbols; track currency) {
+              <mat-option [value]="currency.code">{{ currency.code }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button mat-icon-button type="button" (click)="swap()">
+        <img [ngSrc]="'/assets/icons/swap.svg'" alt="" height="30" width="30">
+      </button>
+
+      <div class="convertor-right">
+        <mat-form-field class="example-full-width">
+          <mat-label>Сумма</mat-label>
+          <input matInput formControlName="toAmount" placeholder="1000" type="number" min="0">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Валюта</mat-label>
+          <mat-select formControlName="toAmountCurrency">
+            @for (currency of currencySymbols; track currency) {
+              <mat-option [value]="currency.code">{{ currency.code }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
